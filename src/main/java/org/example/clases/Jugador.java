@@ -1,8 +1,12 @@
 package org.example.clases;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class Jugador {
 
-    private String nombre, apellido, nombreEquipo, numeroCamiseta,posicion;
+    private String nombre, apellido, nombreEquipo, numeroCamiseta, posicion;
     private int edad;
 
     public Jugador() {
@@ -65,5 +69,42 @@ public class Jugador {
         this.posicion = posicion;
     }
 
+
+    public void agregarJugador() {
+        Scanner read = new Scanner(System.in);
+        System.out.print("Digite Número de la camiseta del Jugador: ");
+        this.numeroCamiseta = read.next();
+        System.out.print("Digite Nombre del Jugador: ");
+        this.nombre = read.next();
+        System.out.print("Digite Apellido del Jugador: ");
+        this.apellido = read.next();
+        System.out.print("Escriba la Posición del Jugador: ");
+        this.posicion = read.next();
+        System.out.print("Digita la Edad del Jugador: ");
+        this.edad = read.nextInt();
+        System.out.print("Digita el Club donde juega Jugador: ");
+        this.nombreEquipo = read.next();
+    }
+
+    public Jugador(String numeroCamiseta) {
+        this.numeroCamiseta = numeroCamiseta;
+    }
+
+    public boolean buscarJugador(String numeroJugador) {
+        return this.numeroCamiseta.equals(numeroJugador);
+    }
+
+
+    //    public boolean buscarJugador(){
+//        return  this.numeroCamiseta.equals(numeroJugador);
+//    }
+    public void mostrarJugador() {
+        System.out.print("\n\nNúmero de camisa: " + this.numeroCamiseta
+                + "\nNombre: " + this.nombre
+                + "\nAppellido: " + this.apellido
+                + "\nPosición: " + this.posicion
+                + "\nEdad: " + this.edad
+                + "\nClub: " + this.nombreEquipo);
+    }
 
 }
