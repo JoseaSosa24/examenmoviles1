@@ -82,8 +82,48 @@ public class Jugador {
         this.posicion = read.next();
         System.out.print("Digita la Edad del Jugador: ");
         this.edad = read.nextInt();
-        System.out.print("Digita el Club donde juega Jugador: ");
+        System.out.print("Digita el Club donde juega el Jugador: ");
         this.nombreEquipo = read.next();
+    }
+
+    public void editarJugador(int opcionEditar, Jugador jugador){
+        Scanner read = new Scanner(System.in);
+        switch (opcionEditar) {
+
+            case 1:
+                System.out.print("Digite Número Camisa: ");
+                jugador.setNumeroCamiseta(read.next());
+                System.out.println("¡Nùmero de Camisa actualizado correctamente!");
+                break;
+            case 2:
+                System.out.print("Digite Nombre: ");
+                jugador.setNombre(read.next());
+                System.out.println("¡Nombre actualizado correctamente!");
+                break;
+            case 3:
+                System.out.print("Digite Apellido: ");
+                jugador.setApellido(read.next());
+                System.out.println("¡Apellido actualizado correctamente!");
+                break;
+            case 4:
+                System.out.print("Digite Posición: ");
+                jugador.setPosicion(read.next());
+                System.out.println("¡Posiciòn actualizado correctamente!");
+                break;
+            case 5:
+                System.out.print("Digite Edad: ");
+                jugador.setEdad(read.nextInt());
+                System.out.println("¡Edad actualizada correctamente!");
+                break;
+            case 6:
+                System.out.print("Digite Club: ");
+                jugador.setNombreEquipo(read.next());
+                System.out.println("¡Club actualizado correctamente!");
+                break;
+            default:
+                System.out.println("Digite una opción valida");
+
+        }//FIN CASE EDITAR
     }
 
     public Jugador(String numeroCamiseta) {
@@ -99,12 +139,16 @@ public class Jugador {
 //        return  this.numeroCamiseta.equals(numeroJugador);
 //    }
     public void mostrarJugador() {
-        System.out.print("\n\nNúmero de camisa: " + this.numeroCamiseta
-                + "\nNombre: " + this.nombre
-                + "\nAppellido: " + this.apellido
-                + "\nPosición: " + this.posicion
-                + "\nEdad: " + this.edad
-                + "\nClub: " + this.nombreEquipo);
+        System.out.print("\033[32m\n\nNúmero de camisa: " + this.numeroCamiseta+"\u001B[0m"
+                + "\nNombre: \033[32m" + this.nombre+"\u001B[0m"
+                + "\nAppellido: \033[32m" + this.apellido+"\u001B[0m"
+                + "\nPosición: \033[32m" + this.posicion+"\u001B[0m"
+                + "\nEdad: \033[32m" + this.edad+"\u001B[0m"
+                + "\nClub: \033[32m" + this.nombreEquipo+"\u001B[0m");
     }
 
 }
+
+
+
+
