@@ -84,9 +84,10 @@ public class Jugador {
         this.edad = read.nextInt();
         System.out.print("Digita el Club donde juega el Jugador: ");
         this.nombreEquipo = read.next();
+
     }
 
-    public void editarJugador(int opcionEditar, Jugador jugador){
+    public void editarJugador(int opcionEditar, Jugador jugador) {
         Scanner read = new Scanner(System.in);
         switch (opcionEditar) {
 
@@ -120,31 +121,33 @@ public class Jugador {
                 jugador.setNombreEquipo(read.next());
                 System.out.println("¡Club actualizado correctamente!");
                 break;
+            case 7:
+                break;
             default:
                 System.out.println("Digite una opción valida");
 
         }//FIN CASE EDITAR
     }
 
-    public Jugador(String numeroCamiseta) {
-        this.numeroCamiseta = numeroCamiseta;
+    public Jugador buscarJugador(ArrayList<Jugador> jugadores, String jugadorBuscar) {
+        Jugador jugadorEncontrado=null;
+
+        for (Jugador jugador: jugadores){
+            if (jugador.getNumeroCamiseta().equals(jugadorBuscar)) {
+                jugadorEncontrado =jugador;
+                break;
+            }
+        }
+        return jugadorEncontrado;
     }
 
-    public boolean buscarJugador(String numeroJugador) {
-        return this.numeroCamiseta.equals(numeroJugador);
-    }
-
-
-    //    public boolean buscarJugador(){
-//        return  this.numeroCamiseta.equals(numeroJugador);
-//    }
     public void mostrarJugador() {
-        System.out.print("\033[32m\n\nNúmero de camisa: " + this.numeroCamiseta+"\u001B[0m"
-                + "\nNombre: \033[32m" + this.nombre+"\u001B[0m"
-                + "\nAppellido: \033[32m" + this.apellido+"\u001B[0m"
-                + "\nPosición: \033[32m" + this.posicion+"\u001B[0m"
-                + "\nEdad: \033[32m" + this.edad+"\u001B[0m"
-                + "\nClub: \033[32m" + this.nombreEquipo+"\u001B[0m");
+        System.out.print("\n\nNúmero de camisa: " + "\033[32m"+this.numeroCamiseta + "\u001B[0m"
+                + "\nNombre: \033[32m" + this.nombre + "\u001B[0m"
+                + "\nAppellido: \033[32m" + this.apellido + "\u001B[0m"
+                + "\nPosición: \033[32m" + this.posicion + "\u001B[0m"
+                + "\nEdad: \033[32m" + this.edad + "\u001B[0m"
+                + "\nClub: \033[32m" + this.nombreEquipo + "\u001B[0m");
     }
 
 }
