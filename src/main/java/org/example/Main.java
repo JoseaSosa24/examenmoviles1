@@ -9,7 +9,7 @@ import java.io.*;
 public class Main {
     public static void main(String[] args) throws IOException {
         String black = "\033[30m", red = "\033[31m", green = "\033[32m", yellow = "\033[33m", blue = "\033[34m",
-                purple = "\033[35m", cyan = "\033[36m", white = "\033[37m", reset = "\u001B[0m";
+                cyan = "\033[36m", reset = "\u001B[0m";
 
         Scanner read = new Scanner(System.in);
         Main principal = new Main();
@@ -33,58 +33,49 @@ public class Main {
             if (!jugadores.isEmpty() || opcionMenu == 1 || opcionMenu == 5) {
                 switch (opcionMenu) {
                     case 1:
-                        if (jugadores.size() == 2) {
+                        if (jugadores.size() == 6) {
                             System.out.println(yellow + "No se permiten agregar más jugadores a la convocatoria, máximo 23" + reset);
                         } else {
-                            System.out.println("\n************AGREGANDO JUGADOR***********\n");
+                            System.out.println(cyan + "\n************AGREGANDO JUGADOR***********\n" + reset);
                             objetoJugador = new Jugador();
                             objetoJugador.agregarJugador();
-                            jugadores.add(objetoJugador);
-                            System.out.print(green + "¡Jugador agregado a la convocatoria correctamente!\n" + reset);
+                            if (objetoJugador.buscarJugador(jugadores, objetoJugador.getNumeroCamiseta()) == null) {
+                                jugadores.add(objetoJugador);
+                                System.out.print(green + "¡Jugador agregado a la convocatoria correctamente!\n" + reset);
+                            } else {
+                                System.err.println("Y hay un jugador que tiene el número de camisa ingresado");
+                            }
                         }
                         System.out.println("-->Presione ENTER para continuar<--");
                         System.in.read();
                         break;
                     case 2:
                         objetoJugador = new Jugador();
-                        System.out.println("************BUSCANDO JUGADOR***********\n");
+                        System.out.println(cyan + "************BUSCANDO JUGADOR***********\n" + reset);
                         System.out.print("Ingrese número de camiseta del Jugador a buscar: ");
                         String numeroCamisaBuscar = read.next();
                         Jugador jugadorEncontrado;
-                        jugadorEncontrado=objetoJugador.buscarJugador(jugadores,numeroCamisaBuscar);
-                        if (jugadorEncontrado!=null){
-                            System.out.print("Jugador encontrado");
+                        jugadorEncontrado = objetoJugador.buscarJugador(jugadores, numeroCamisaBuscar);
+                        if (jugadorEncontrado != null) {
+                            System.out.println(green+"¡Jugador encontrado!"+reset);
                             jugadorEncontrado.mostrarJugador();
-                        }else {
+                        } else {
                             System.err.println("Jugador No encontrado\n");
                         }
-                        //objetoJugador = new Jugador();
-//                        boolean encontrado = false;
-//                        for (Jugador jugador : jugadores) {
-//                            if (jugador.getNumeroCamiseta().equals(numeroCamisaBuscar)) {
-//                                System.out.print("Jugador encontrado");
-//                                jugador.mostrarJugador();
-//                                encontrado = true;
-//                                break;
-//                            }
-//                        }
-//                        if (!encontrado) {
-//                            System.err.print("Jugador No encontrado");
-//                        }
-//                        System.out.println("\n-->Presione ENTER para continuar<--");
-//                        System.in.read();
+                        System.out.println("\n-->Presione ENTER para continuar<--");
+                        System.in.read();
                         break;
                     case 3:
                         objetoJugador = new Jugador();
-                        System.out.println("************EDITANDO JUGADOR***********\n");
+                        System.out.println(cyan + "************EDITANDO JUGADOR***********\n" + reset);
                         System.out.print("Ingrese número del Jugador a Editar: ");
                         String numeroCamisaEditar = read.next();
                         Jugador jugadorEditar;
-                        jugadorEditar=objetoJugador.buscarJugador(jugadores,numeroCamisaEditar);
+                        jugadorEditar = objetoJugador.buscarJugador(jugadores, numeroCamisaEditar);
                         int opcionEditar;
-                        if (jugadorEditar!=null){
+                        if (jugadorEditar != null) {
                             do {
-                                System.out.print("\nDatos del Jugador: ");
+                                System.out.print(cyan+"\n**Datos del Jugador:** "+reset);
                                 jugadorEditar.mostrarJugador();
                                 System.out.println("");
                                 System.out.println(cyan + "\nSeleccione el campo a Editar:"
@@ -97,50 +88,18 @@ public class Main {
                                         + "\n7.Para volver al Menú principal" + reset);
                                 opcionEditar = read.nextInt();
                                 objetoJugador = new Jugador();
-                                objetoJugador.editarJugador(opcionEditar,jugadorEditar);
+                                opcionEditar = objetoJugador.editarJugador(opcionEditar, jugadorEditar);
 
                             } while (opcionEditar != 7);
-                        }else {
+                        } else {
                             System.err.println("Jugador No encontrado\n");
+                            System.out.println("-->Presione ENTER para continuar<--");
+                            System.in.read();
                         }
-//                        boolean encontrado2 = false;
-//                        for (Jugador jugador : jugadores) {
-//                            if (jugador.getNumeroCamiseta().equals(numeroCamisaEditar)) {
-//                                int opcionEditar;
-//
-//                                do {
-//                                    System.out.print("\nDatos del Jugador: ");
-//                                    jugador.mostrarJugador();
-//                                    System.out.println("");
-//                                    System.out.println(cyan + "\nSeleccione el campo a Editar:"
-//                                            + "\n1.Número Camisa"
-//                                            + "\n2.Nombre"
-//                                            + "\n3.Apellido"
-//                                            + "\n4.Posición"
-//                                            + "\n5.Edad"
-//                                            + "\n6.Club"
-//                                            + "\n7.Para volver al Menú principal" + reset);
-//                                    opcionEditar = read.nextInt();
-//                                    objetoJugador = new Jugador();
-//                                    objetoJugador.editarJugador(opcionEditar, jugador);
-//
-//                                } while (opcionEditar != 7);
-//
-//                                encontrado2 = true;
-//                                break;
-//                            }
-//                        }
-//
-//                        if (!encontrado2) {
-//                            System.out.println(yellow + "Jugador No encontrado" + reset);
-//                        }
-
-                        System.out.println("-->Presione ENTER para continuar<--");
-                        System.in.read();
                         break;
                     case 4:
 
-                        System.out.print("*********JUGADORES CONVOCADOS***********");
+                        System.out.print(cyan + "\n*********JUGADORES CONVOCADOS***********" + reset);
                         for (Jugador jugador : jugadores) {
                             jugador.mostrarJugador();
                         }

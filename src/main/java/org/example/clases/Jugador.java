@@ -1,8 +1,8 @@
 package org.example.clases;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
+import java.io.*;
 
 public class Jugador {
 
@@ -87,46 +87,61 @@ public class Jugador {
 
     }
 
-    public void editarJugador(int opcionEditar, Jugador jugador) {
+    public int editarJugador(int opcionEditar, Jugador jugador) throws IOException {
         Scanner read = new Scanner(System.in);
         switch (opcionEditar) {
 
             case 1:
                 System.out.print("Digite Número Camisa: ");
                 jugador.setNumeroCamiseta(read.next());
-                System.out.println("¡Nùmero de Camisa actualizado correctamente!");
+                System.out.println("\u001B[32m¡Nùmero de Camisa actualizado correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 2:
                 System.out.print("Digite Nombre: ");
                 jugador.setNombre(read.next());
-                System.out.println("¡Nombre actualizado correctamente!");
+                System.out.println("\u001B[32m¡Nombre actualizado correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 3:
                 System.out.print("Digite Apellido: ");
                 jugador.setApellido(read.next());
-                System.out.println("¡Apellido actualizado correctamente!");
+                System.out.println("\033[32m¡Apellido actualizado correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 4:
                 System.out.print("Digite Posición: ");
                 jugador.setPosicion(read.next());
-                System.out.println("¡Posiciòn actualizado correctamente!");
+                System.out.println("\u001B[32m¡Posición actualizada correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 5:
                 System.out.print("Digite Edad: ");
                 jugador.setEdad(read.nextInt());
-                System.out.println("¡Edad actualizada correctamente!");
+                System.out.println("\u001B[32m¡Edad actualizada correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 6:
                 System.out.print("Digite Club: ");
                 jugador.setNombreEquipo(read.next());
-                System.out.println("¡Club actualizado correctamente!");
+                System.out.println("\u001B[32m¡Club actualizado correctamente!\u001B[0m");
+                System.out.println("¿Desea editar otro elemento? 0:Sí 7:NO");
+                opcionEditar=read.nextInt();
                 break;
             case 7:
                 break;
             default:
-                System.out.println("Digite una opción valida");
+                System.err.println("Digite una opción valida");
+                System.out.println("->Presione ENTER para intentar de nuevo<--");
+                System.in.read();
 
         }//FIN CASE EDITAR
+        return opcionEditar;
     }
 
     public Jugador buscarJugador(ArrayList<Jugador> jugadores, String jugadorBuscar) {
@@ -142,12 +157,12 @@ public class Jugador {
     }
 
     public void mostrarJugador() {
-        System.out.print("\n\nNúmero de camisa: " + "\033[32m"+this.numeroCamiseta + "\u001B[0m"
+        System.out.println("\nNúmero de camisa: " + "\033[32m"+this.numeroCamiseta + "\u001B[0m"
                 + "\nNombre: \033[32m" + this.nombre + "\u001B[0m"
-                + "\nAppellido: \033[32m" + this.apellido + "\u001B[0m"
+                + "\nApellido: \033[32m" + this.apellido + "\u001B[0m"
                 + "\nPosición: \033[32m" + this.posicion + "\u001B[0m"
                 + "\nEdad: \033[32m" + this.edad + "\u001B[0m"
-                + "\nClub: \033[32m" + this.nombreEquipo + "\u001B[0m");
+                + "\nClub: \033[32m" + this.nombreEquipo + "\u001B[0m ");
     }
 
 }
